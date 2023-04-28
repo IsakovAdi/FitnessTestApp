@@ -1,9 +1,8 @@
 package com.example.fitnesstestapp.domain.interactors
 
 import android.annotation.SuppressLint
+import android.util.Log
 import com.example.fitnesstestapp.domain.DataRequestState
-import com.example.fitnesstestapp.domain.UNIX_START_DATE
-import com.example.fitnesstestapp.domain.formatISOAsDate
 import com.example.fitnesstestapp.domain.helpers.DispatchersProvider
 import com.example.fitnesstestapp.domain.models.LessonDomain
 import com.example.fitnesstestapp.domain.models.LessonsModel
@@ -13,8 +12,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
+private val UNIX_START_DATE = Date(0L)
 
 class GetLessonsUseCaseImpl @Inject constructor(
     private val repository: Repository,
@@ -31,14 +32,19 @@ class GetLessonsUseCaseImpl @Inject constructor(
             is DataRequestState.Error -> emptyList()
         }
 
-        val dateList = lessons.map { it.date.formatISOAsDate() }.toSet()
+        val dateList = lessons.map {
+            it.date
+        }.toSortedSet()
 
+        dateList.forEach {
+            Log.d("DATES", it.toString())
+        }
         val allLessons = mutableListOf<LessonsModel>()
 
         dateList.forEach { currentDate ->
             allLessons.add(LessonsModel.LessonDate(currentDate.toString()))
             lessons.forEach { lessonDomain ->
-                if (lessonDomain.date.formatISOAsDate() == currentDate) {
+                if (lessonDomain.date == currentDate) {
                     allLessons.add(
                         mapLessonDomainToLessonModel(
                             lessonDomain = lessonDomain,

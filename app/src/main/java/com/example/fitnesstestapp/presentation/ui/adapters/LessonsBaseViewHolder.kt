@@ -6,6 +6,7 @@ import androidx.viewbinding.ViewBinding
 import com.example.fitnesstestapp.databinding.LessonsDateItemBinding
 import com.example.fitnesstestapp.databinding.LessonsItemBinding
 import com.example.fitnesstestapp.domain.models.LessonsModel
+import com.example.fitnesstestapp.presentation.helpers.formatISOAsDate
 
 abstract class LessonsBaseViewHolder(private val binding: ViewBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -34,7 +35,8 @@ abstract class LessonsBaseViewHolder(private val binding: ViewBinding) :
         LessonsBaseViewHolder(binding) {
         override fun setupViews(model: LessonsModel) {
             val lesson = model as? LessonsModel.LessonDate ?: return
-            binding.lessonDateTv.text = lesson.date
+
+            binding.lessonDateTv.text = lesson.date.formatISOAsDate().toString()
         }
     }
 }
