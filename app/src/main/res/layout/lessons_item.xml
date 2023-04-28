@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginTop="14dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/startColoredLine"
+            android:layout_width="8dp"
+            android:layout_height="100dp"
+            android:background="@color/grey_green"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/startTimeTv"
+            style="@style/TextViewStyle"
+            android:layout_marginStart="14dp"
+            android:text="10:00"
+            app:layout_constraintBottom_toTopOf="@+id/endTimeTv"
+            app:layout_constraintStart_toEndOf="@id/startColoredLine"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/endTimeTv"
+            style="@style/TextViewStyle"
+            android:text="11:00"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/startTimeTv"
+            app:layout_constraintTop_toBottomOf="@+id/startTimeTv" />
+
+        <TextView
+            android:id="@+id/durationTv"
+            style="@style/TextViewStyle"
+            android:layout_marginEnd="14dp"
+            android:text="1ч. 15мин"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/startTimeTv" />
+
+        <TextView
+            android:id="@+id/fitnessTypeTv"
+            style="@style/TextViewStyle"
+            android:layout_width="0dp"
+            android:layout_marginStart="16dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="Силовая тренировка"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/startTimeTv"
+            app:layout_constraintEnd_toStartOf="@id/durationTv"
+            app:layout_constraintStart_toEndOf="@id/startTimeTv"
+            app:layout_constraintTop_toTopOf="@id/startTimeTv" />
+
+        <ImageView
+            android:id="@+id/personIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_person"
+            app:layout_constraintBottom_toBottomOf="@id/endTimeTv"
+            app:layout_constraintStart_toStartOf="@id/fitnessTypeTv"
+            app:layout_constraintTop_toTopOf="@id/endTimeTv" />
+
+        <TextView
+            android:id="@+id/trainerNameTv"
+            style="@style/TextViewStyle"
+            android:layout_width="0dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="Григорьев Ярослав"
+            app:layout_constraintBottom_toBottomOf="@id/endTimeTv"
+            app:layout_constraintEnd_toStartOf="@id/locationIcon"
+            app:layout_constraintStart_toEndOf="@id/personIcon" />
+
+        <TextView
+            android:id="@+id/locationTv"
+            style="@style/TextViewStyle"
+            android:maxLength="10"
+            android:text="Студия 2"
+            app:layout_constraintBottom_toBottomOf="@id/trainerNameTv"
+            app:layout_constraintEnd_toEndOf="@id/durationTv" />
+
+        <ImageView
+            android:id="@+id/locationIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_location"
+            app:layout_constraintBottom_toBottomOf="@id/personIcon"
+            app:layout_constraintEnd_toStartOf="@id/locationTv" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

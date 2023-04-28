@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">FitnessTestApp</string>
+    <string name="network_error">Подключение к интернету отсутствует.</string>
+    <string name="generic_error">Что то пошло не так.</string>
+    <string name="service_unavailable">Ошибка сервера.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lessonsText">Занятия</string>
+    <string name="statementsText">Заявки</string>
+    <string name="chatText">Чат</string>
+    <string name="moreText">Ещё</string>
+    <string name="addText">add</string>
+</resources>

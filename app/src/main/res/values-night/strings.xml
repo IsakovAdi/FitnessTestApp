@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lessonsText">Занятия</string>
+    <string name="statementsText">Заявки</string>
+    <string name="chatText">Чат</string>
+    <string name="moreText">Ещё</string>
+    <string name="addText">add</string>
+</resources>
