@@ -1,7 +1,6 @@
 package com.example.fitnesstestapp.domain.interactors
 
 import android.annotation.SuppressLint
-import android.util.Log
 import com.example.fitnesstestapp.domain.DataRequestState
 import com.example.fitnesstestapp.domain.helpers.DispatchersProvider
 import com.example.fitnesstestapp.domain.models.LessonDomain
@@ -36,9 +35,6 @@ class GetLessonsUseCaseImpl @Inject constructor(
             it.date
         }.toSortedSet()
 
-        dateList.forEach {
-            Log.d("DATES", it.toString())
-        }
         val allLessons = mutableListOf<LessonsModel>()
 
         dateList.forEach { currentDate ->
@@ -67,11 +63,13 @@ class GetLessonsUseCaseImpl @Inject constructor(
             startTime = startTime,
             endTime = endTime,
             availableSlots = availableSlots,
-            coachName = getTrainerName(coachId = coachId, trainers = trainers),
+            coach = getTrainerName(coachId = coachId, trainers = trainers),
             place = place,
             color = color,
             category = category,
-            duration = formatDuration(startTime, endTime)
+            duration = formatDuration(startTime, endTime),
+            description = description,
+            date = date
         )
     }
 
@@ -82,7 +80,6 @@ class GetLessonsUseCaseImpl @Inject constructor(
         val format = SimpleDateFormat("HH:mm")
         val startTime = format.parse(start)
         val endTime = format.parse(end)
-//        val duration = (endTime!!.time - startTime!!.time)/60000
         val duration = ((endTime?.time ?: UNIX_START_DATE.time) - (startTime?.time
             ?: UNIX_START_DATE.time)) / 60000
         return timeFormat(duration.toInt())
@@ -105,9 +102,8 @@ class GetLessonsUseCaseImpl @Inject constructor(
     /* Из коллекций тренеров получаем имя тренера для занятия по идентификатору */
     private fun getTrainerName(coachId: String, trainers: List<TrainerDomain>) = trainers.filter {
         it.trainerId.equals(coachId)
-    }.map {
-        it.trainerName
-    }.firstOrNull() ?: ""
+    }.map { it
+    }.firstOrNull()
 }
 
 

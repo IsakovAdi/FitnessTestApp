@@ -7,6 +7,10 @@ import com.example.fitnesstestapp.data.cloud.source.ResponseHandlerImpl
 import com.example.fitnesstestapp.data.cloud.source.lessons.LessonsCloudDataSource
 import com.example.fitnesstestapp.data.cloud.source.lessons.LessonsCloudDataSourceImpl
 import com.example.fitnesstestapp.data.models.FitnessResponseData
+import com.example.fitnesstestapp.data.storage.db.FitnessResourcesStorageDao
+import com.example.fitnesstestapp.data.storage.model.FitnessResourcesStorage
+import com.example.fitnesstestapp.data.storage.source.StorageClubResourcesDataSource
+import com.example.fitnesstestapp.data.storage.source.StorageClubResourcesDataSourceImpl
 import com.example.fitnesstestapp.domain.Mapper
 import com.example.fitnesstestapp.domain.helpers.DispatchersProvider
 import dagger.Module
@@ -36,6 +40,19 @@ class SourceModule {
         api = api,
         mapFitnessResponseToData = mapFitnessResponseToData,
         responseHandler = responseHandler,
+        dispatchersProvider = dispatchersProvider,
+    )
+
+    @Provides
+    fun provideStorageClubResourcesDataSourceImpl(
+        dao: FitnessResourcesStorageDao,
+        mapToStorage: Mapper<FitnessResponseData, FitnessResourcesStorage>,
+        mapFromStorage: Mapper<FitnessResourcesStorage, FitnessResponseData>,
+        dispatchersProvider: DispatchersProvider,
+    ): StorageClubResourcesDataSource = StorageClubResourcesDataSourceImpl(
+        dao = dao,
+        mapToStorage = mapToStorage,
+        mapFromStorage = mapFromStorage,
         dispatchersProvider = dispatchersProvider,
     )
 }

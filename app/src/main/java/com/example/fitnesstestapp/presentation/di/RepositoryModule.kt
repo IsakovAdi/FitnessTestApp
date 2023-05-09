@@ -5,6 +5,7 @@ import com.example.fitnesstestapp.data.cloud.base.ResourceProvider
 import com.example.fitnesstestapp.data.cloud.source.lessons.LessonsCloudDataSource
 import com.example.fitnesstestapp.data.models.FitnessResponseData
 import com.example.fitnesstestapp.data.repositoryImpl.RepositoryImpl
+import com.example.fitnesstestapp.data.storage.source.StorageClubResourcesDataSource
 import com.example.fitnesstestapp.domain.Mapper
 import com.example.fitnesstestapp.domain.helpers.DispatchersProvider
 import com.example.fitnesstestapp.domain.models.FitnessResponseDomain
@@ -26,10 +27,14 @@ class RepositoryModule {
 
     @Provides
     fun provideRepository(
+        storageDataSource: StorageClubResourcesDataSource,
         cloudDataSource: LessonsCloudDataSource,
         mapper: Mapper<FitnessResponseData, FitnessResponseDomain>,
+        dispatchersProvider: DispatchersProvider,
     ): Repository = RepositoryImpl(
+        storageDataSource = storageDataSource,
         cloudDataSource = cloudDataSource,
         mapper = mapper,
+        dispatchersProvider = dispatchersProvider
     )
 }
