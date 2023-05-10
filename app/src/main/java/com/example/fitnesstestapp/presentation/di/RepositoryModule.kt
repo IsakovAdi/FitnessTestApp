@@ -5,11 +5,13 @@ import com.example.fitnesstestapp.data.cloud.base.ResourceProvider
 import com.example.fitnesstestapp.data.cloud.source.lessons.LessonsCloudDataSource
 import com.example.fitnesstestapp.data.models.FitnessResponseData
 import com.example.fitnesstestapp.data.repositoryImpl.RepositoryImpl
+import com.example.fitnesstestapp.data.repositoryImpl.StorageRepositoryImpl
 import com.example.fitnesstestapp.data.storage.source.StorageClubResourcesDataSource
 import com.example.fitnesstestapp.domain.Mapper
 import com.example.fitnesstestapp.domain.helpers.DispatchersProvider
 import com.example.fitnesstestapp.domain.models.FitnessResponseDomain
 import com.example.fitnesstestapp.domain.repository.Repository
+import com.example.fitnesstestapp.domain.repository.StorageRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,5 +38,16 @@ class RepositoryModule {
         cloudDataSource = cloudDataSource,
         mapper = mapper,
         dispatchersProvider = dispatchersProvider
+    )
+
+    @Provides
+    fun provideStorageRepositoryImpl(
+        dispatchersProvider: DispatchersProvider,
+        mapper: Mapper<FitnessResponseData, FitnessResponseDomain>,
+        source: StorageClubResourcesDataSource,
+    ): StorageRepository = StorageRepositoryImpl(
+        dispatchersProvider = dispatchersProvider,
+        mapper = mapper,
+        source = source,
     )
 }

@@ -1,7 +1,9 @@
 package com.example.fitnesstestapp.presentation.di
 
-import com.example.fitnesstestapp.domain.interactors.GetLessonsUseCase
-import com.example.fitnesstestapp.domain.interactors.GetLessonsUseCaseImpl
+import com.example.fitnesstestapp.domain.interactors.cloud.GetLessonsUseCase
+import com.example.fitnesstestapp.domain.interactors.cloud.GetLessonsUseCaseImpl
+import com.example.fitnesstestapp.domain.interactors.sotorage.GetLessonResourceFromStorageUseCase
+import com.example.fitnesstestapp.domain.interactors.sotorage.GetLessonResourceFromStorageUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,7 +15,11 @@ abstract class InteractorsModule {
 
     @Binds
     abstract fun bindGetLessonsUsecase(
-        implementation:GetLessonsUseCaseImpl
-    ):GetLessonsUseCase
+        implementation: GetLessonsUseCaseImpl,
+    ): GetLessonsUseCase
 
+    @Binds
+    abstract fun bindGetLessonsFormStorageUseCase(
+        implementation: GetLessonResourceFromStorageUseCaseImpl,
+    ): GetLessonResourceFromStorageUseCase
 }

@@ -1,4 +1,4 @@
-package com.example.fitnesstestapp.domain.interactors
+package com.example.fitnesstestapp.domain.interactors.cloud
 
 import com.example.fitnesstestapp.domain.models.LessonsModel
 import kotlinx.coroutines.flow.Flow
